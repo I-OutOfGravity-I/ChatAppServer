@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Pipes;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
 public class client
 {
@@ -25,7 +21,7 @@ public class ChatServer
 {
     private readonly List<client> clients = new List<client>();
     private readonly TcpListener listener;
-    
+    private readonly object clientsLock = new object(); // For thread safety
 
     public ChatServer(IPAddress ipAddress, int port)
     {
@@ -39,11 +35,15 @@ public class ChatServer
 
         while (true)
         {
-            TcpClient client = listener.AcceptTcpClient();
+            TcpClient tcpClient = listener.AcceptTcpClient();
             Console.WriteLine("Client connected.");
 
-            ClientHandler clientHandler = new ClientHandler(client, this);
-            clients.Add(new client(clientHandler, null));
+            ClientHandler clientHandler = new ClientHandler(tcpClient, this);
+
+            lock (clientsLock)
+            {
+                clients.Add(new client(clientHandler, null));
+            }
 
             Thread clientThread = new Thread(() => clientHandler.HandleClient(clients[clients.Count - 1]));
             clientThread.Start();
@@ -52,15 +52,21 @@ public class ChatServer
 
     public void BroadcastMessage(string message, ClientHandler sender)
     {
-        foreach (var client in clients)
+        lock (clientsLock)
         {
-            client.ClientHandler.SendMessage(message);
+            foreach (var client in clients)
+            {
+                client.ClientHandler.SendMessage(message);
+            }
         }
     }
 
     public void RemoveClient(client client)
     {
-        clients.Remove(client);
+        lock (clientsLock)
+        {
+            clients.Remove(client);
+        }
     }
 }
 
@@ -80,13 +86,12 @@ public class ClientHandler
         reader = new StreamReader(stream, Encoding.UTF8);
         writer = new StreamWriter(stream, Encoding.UTF8);
     }
-
     public void HandleClient(client client)
     {
         try
         {
             client.Username = reader.ReadLine();
-            Console.WriteLine($"{client.Username} joined the chat.");
+            Console.WriteLine($"{client.Username} joined the chat. {client.ClientHandler.client.Client.RemoteEndPoint}");
             server.BroadcastMessage($"{client.Username} joined the chat.", this);
 
             while (true)
@@ -95,7 +100,7 @@ public class ClientHandler
                 if (message == null)
                     break;
 
-                Console.WriteLine($"{client.Username}: {message}");
+                //Console.WriteLine($"{client.Username}: {message}");
                 server.BroadcastMessage($"{client.Username}: {message}", this);
             }
         }
@@ -105,9 +110,16 @@ public class ClientHandler
         }
         finally
         {
-            server.BroadcastMessage($"{client.Username} disconnected.", this);
+            String tempUsername = client.Username;
             server.RemoveClient(client);
+
+            // Properly close network resources
+            reader.Close();
+            writer.Close();
+            stream.Close();
+
             this.client.Close();
+            server.BroadcastMessage($"{tempUsername} disconnected.", this);
             Console.WriteLine("Client disconnected.");
         }
     }
@@ -126,6 +138,7 @@ public class Program
         IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
         int port = 12345;
         ChatServer server = new ChatServer(ipAddress, port);
-        server.Start();
+        Thread t = new Thread(server.Start);
+        t.Start();
     }
 }

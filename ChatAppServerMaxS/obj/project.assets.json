@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\outofgravity\\source\\repos\\ChatAppServerMaxS\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
+      "projectUniqueName": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
       "projectName": "ChatAppServerMaxS",
-      "projectPath": "C:\\Users\\outofgravity\\source\\repos\\ChatAppServerMaxS\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
+      "projectPath": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
       "packagesPath": "C:\\Users\\outofgravity\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\outofgravity\\source\\repos\\ChatAppServerMaxS\\ChatAppServerMaxS\\obj\\",
+      "outputPath": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\outofgravity\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

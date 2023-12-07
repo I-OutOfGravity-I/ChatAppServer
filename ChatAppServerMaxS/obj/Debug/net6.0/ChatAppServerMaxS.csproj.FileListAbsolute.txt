@@ -13,3 +13,17 @@ C:\Users\outofgravity\source\repos\ChatAppServerMaxS\ChatAppServerMaxS\obj\Debug
 C:\Users\outofgravity\source\repos\ChatAppServerMaxS\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.pdb
 C:\Users\outofgravity\source\repos\ChatAppServerMaxS\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.genruntimeconfig.cache
 C:\Users\outofgravity\source\repos\ChatAppServerMaxS\ChatAppServerMaxS\obj\Debug\net6.0\ref\ChatAppServerMaxS.dll
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\bin\Debug\net6.0\ChatAppServerMaxS.exe
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\bin\Debug\net6.0\ChatAppServerMaxS.deps.json
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\bin\Debug\net6.0\ChatAppServerMaxS.runtimeconfig.json
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\bin\Debug\net6.0\ChatAppServerMaxS.dll
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\bin\Debug\net6.0\ChatAppServerMaxS.pdb
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.AssemblyInfoInputs.cache
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.AssemblyInfo.cs
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.csproj.CoreCompileInputs.cache
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.dll
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\refint\ChatAppServerMaxS.dll
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.pdb
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.genruntimeconfig.cache
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ref\ChatAppServerMaxS.dll
