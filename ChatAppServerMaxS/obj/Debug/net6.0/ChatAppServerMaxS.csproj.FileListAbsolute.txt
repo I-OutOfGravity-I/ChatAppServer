@@ -27,3 +27,6 @@ C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\r
 C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.pdb
 C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.genruntimeconfig.cache
 C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ref\ChatAppServerMaxS.dll
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.csproj.AssemblyReference.cache
+C:\Users\outofgravity\Desktop\ChatAppServer\ChatAppServerMaxS\obj\Debug\net6.0\ChatAppServerMaxS.csproj.CopyComplete

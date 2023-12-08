@@ -1,13 +1,75 @@
-﻿using System.Net;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
-public class client
+public enum MessageType
+{
+    ServerNotification,
+    Message,
+    ConnectedUsers,
+    Image,
+    Video
+}
+
+public class Message
+{
+    public MessageType Type { get; set; }
+    public byte[] Content { get; set; }
+
+    public Message (MessageType type, string content)
+    {
+        Type = type;
+        Content = Encoding.UTF8.GetBytes (content);
+    }
+    public Message(MessageType type, List<string> content)
+    {
+        Type = type;    
+        Content = ConvertListToByteArray(content);
+    }
+    public Message(MessageType type, byte[] content)
+    {
+        Type = type;
+        Content = content;
+    }
+    public string Serialize()
+    {
+        return $"{(int)Type}#{Convert.ToBase64String(Content)}";
+    }
+    static byte[] ConvertListToByteArray(List<string> stringList)
+    {
+        // Use UTF-8 encoding to convert each string to bytes
+        List<byte[]> stringBytesList = new List<byte[]>();
+        foreach (string str in stringList)
+        {
+            byte[] strBytes = Encoding.UTF8.GetBytes(str);
+            stringBytesList.Add(strBytes);
+        }
+
+        // Concatenate the byte arrays into a single byte array
+        int totalLength = stringBytesList.Sum(arr => arr.Length);
+        byte[] result = new byte[totalLength];
+        int offset = 0;
+        foreach (byte[] strBytes in stringBytesList)
+        {
+            Buffer.BlockCopy(strBytes, 0, result, offset, strBytes.Length);
+            offset += strBytes.Length;
+        }
+
+        return result;
+    }
+}
+
+public class Client
 {
     private readonly ClientHandler clientHandler;
     private string username;
 
-    public client(ClientHandler clientHandler, string username)
+    public Client(ClientHandler clientHandler, string username)
     {
         this.clientHandler = clientHandler;
         Username = username;
@@ -17,11 +79,12 @@ public class client
 
     public ClientHandler ClientHandler => clientHandler;
 }
+
 public class ChatServer
 {
-    private readonly List<client> clients = new List<client>();
+    private readonly List<Client> clients = new List<Client>();
     private readonly TcpListener listener;
-    private readonly object clientsLock = new object(); // For thread safety
+    private readonly object clientsLock = new object();
 
     public ChatServer(IPAddress ipAddress, int port)
     {
@@ -42,7 +105,7 @@ public class ChatServer
 
             lock (clientsLock)
             {
-                clients.Add(new client(clientHandler, null));
+                clients.Add(new Client(clientHandler, null));
             }
 
             Thread clientThread = new Thread(() => clientHandler.HandleClient(clients[clients.Count - 1]));
@@ -50,7 +113,7 @@ public class ChatServer
         }
     }
 
-    public void BroadcastMessage(string message, ClientHandler sender)
+    public void BroadcastMessage(Message message, ClientHandler sender)
     {
         lock (clientsLock)
         {
@@ -61,7 +124,7 @@ public class ChatServer
         }
     }
 
-    public void RemoveClient(client client)
+    public void RemoveClient(Client client)
     {
         lock (clientsLock)
         {
@@ -86,22 +149,25 @@ public class ClientHandler
         reader = new StreamReader(stream, Encoding.UTF8);
         writer = new StreamWriter(stream, Encoding.UTF8);
     }
-    public void HandleClient(client client)
+
+    public void HandleClient(Client client)
     {
         try
         {
             client.Username = reader.ReadLine();
             Console.WriteLine($"{client.Username} joined the chat. {client.ClientHandler.client.Client.RemoteEndPoint}");
-            server.BroadcastMessage($"{client.Username} joined the chat.", this);
+            server.BroadcastMessage(new Message(MessageType.ServerNotification, $"{client.Username} joined the chat." ), this);
 
             while (true)
             {
                 string message = reader.ReadLine();
                 if (message == null)
                     break;
-
-                //Console.WriteLine($"{client.Username}: {message}");
-                server.BroadcastMessage($"{client.Username}: {message}", this);
+                Message messagee = new Message(MessageType.Message, $"{client.Username}: {message}");
+                Console.WriteLine(message);
+                Console.WriteLine(messagee.Type);
+                Console.WriteLine(messagee.Content);
+                server.BroadcastMessage(messagee, this);
             }
         }
         catch (Exception ex)
@@ -110,7 +176,7 @@ public class ClientHandler
         }
         finally
         {
-            String tempUsername = client.Username;
+            string tempUsername = client.Username;
             server.RemoveClient(client);
 
             // Properly close network resources
@@ -118,16 +184,19 @@ public class ClientHandler
             writer.Close();
             stream.Close();
 
-            this.client.Close();
-            server.BroadcastMessage($"{tempUsername} disconnected.", this);
+            server.BroadcastMessage(new Message(MessageType.ServerNotification, $"{tempUsername} disconnected."), this);
             Console.WriteLine("Client disconnected.");
         }
     }
 
-    public void SendMessage(string message)
+    public void SendMessage(Message message)
     {
-        writer.WriteLine(message);
+        string serializedMessage = JsonConvert.SerializeObject(message);
+        writer.WriteLine(serializedMessage);
         writer.Flush();
+
+        //writer.WriteLine($"{message.Type}#{message.Content}");
+        //writer.Flush();
     }
 }
 

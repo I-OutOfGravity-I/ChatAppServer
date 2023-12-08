@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vhuPmLpPvOkF806IMQW68dgd4I8n0eyfkh1kujiBuQ5Vwhjxug2aaL8fWOLb7ROHEZ3Sp+shPiOfaC+rioOf1Q==",
+  "dgSpecHash": "lBzW426aqRTfeGvlqTkzfYVnuuhMIIkEYdg2nEskek/DJvHpOaZKK7fdwAZbW+KGguyErPdasG2z9j6pGm4x5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\outofgravity\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
