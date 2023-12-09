@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net8.0": {
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -50,36 +50,36 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net8.0": [
       "Newtonsoft.Json >= 13.0.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\outofgravity\\.nuget\\packages\\": {}
+    "C:\\Users\\OUTOF\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
+      "projectUniqueName": "C:\\Users\\OUTOF\\Desktop\\asd\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
       "projectName": "ChatAppServerMaxS",
-      "projectPath": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
-      "packagesPath": "C:\\Users\\outofgravity\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\outofgravity\\Desktop\\ChatAppServer\\ChatAppServerMaxS\\obj\\",
+      "projectPath": "C:\\Users\\OUTOF\\Desktop\\asd\\ChatAppServer\\ChatAppServerMaxS\\ChatAppServerMaxS.csproj",
+      "packagesPath": "C:\\Users\\OUTOF\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\OUTOF\\Desktop\\asd\\ChatAppServer\\ChatAppServerMaxS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\outofgravity\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\OUTOF\\Desktop\\asd\\ChatAppServer\\NuGet.Config",
+        "C:\\Users\\OUTOF\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -90,8 +90,8 @@
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "Newtonsoft.Json": {
             "target": "Package",
@@ -114,7 +114,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
